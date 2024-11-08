@@ -1,3 +1,4 @@
 wp-config.php
 wp-content/uploads/
 .htaccess
+wp-content/themes/blankslate-child/dev_start.sh

@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap");
+
+$fontOutfit: "Outfit", sans-serif;
+$fontRegular: 400;
+$fontMedium: 500;
+$fontSemiBold: 600;
+$fontBold: 700;
+
+:root {
+  --fontOutfit: #{$fontOutfit};
+  --fontRegular: #{$fontRegular};
+  --fontMedium: #{$fontMedium};
+  --fontSemiBold: #{$fontSemiBold};
+  --fontBold: #{$fontBold};
+}

@@ -1,0 +1,46 @@
+@use "sass:list";
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+@use "sass:map";
+
+@each $name, $color in variables.$tooltyp-buttons {
+  @if $name == "white" {
+    .#{$name}-button {
+      @include mixins.tooltyp-buttons(
+        $color,
+        transparent,
+        $color,
+        $color,
+        $color
+      );
+    }
+    .#{$name}-button:hover {
+      @include mixins.tooltyp-buttons(
+        $color,
+        $color,
+        $color,
+        map.get(variables.$tooltyp-buttons, "hover-purple"),
+        $color
+      );
+    }
+  } @else if $name == "deep-purple" {
+    .#{$name}-button {
+      @include mixins.tooltyp-buttons(
+        $color,
+        transparent,
+        $color,
+        $color,
+        $color
+      );
+    }
+    .#{$name}-button:hover {
+      @include mixins.tooltyp-buttons(
+        $color,
+        $color,
+        $color,
+        map.get(variables.$tooltyp-buttons, "white"),
+        $color
+      );
+    }
+  }
+}
