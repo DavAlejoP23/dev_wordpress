@@ -197,6 +197,13 @@ function disable_pingback_and_trackback( &$links ) {
     return $disabled;
 }
 
+function allow_svg_upload( $mimes ) {
+    $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
+}
+add_filter( 'upload_mimes', 'allow_svg_upload' );
+
+
 add_filter( 'pre_comment_content', 'disable_pingback_and_trackback' );
 add_filter( 'comment_post', 'disable_pingback_and_trackback' );
 add_filter( 'xmlrpc_methods', function( $methods ) {
@@ -223,4 +230,6 @@ function swiper_register_styles() {
     wp_enqueue_script('swiper-js');
 }
 add_action('wp_enqueue_scripts', 'swiper_register_styles');
+
+require get_stylesheet_directory() . '/theme/customize-header.php';
 

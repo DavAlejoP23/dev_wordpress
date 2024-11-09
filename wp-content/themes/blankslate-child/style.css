@@ -28,6 +28,14 @@ BlankSlate is distributed under the terms of the GNU GPL
   --hover-purple: #380fa1;
 }
 
+html {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+}
+
 a {
   text-decoration: none;
 }
@@ -208,6 +216,28 @@ a {
   100% {
     border-color: var(--cp-color-yellow);
   }
+}
+
+.site-header {
+  width: 100%;
+  background: var(--deep-grey);
+}
+.site-header .container-menu {
+  display: flex;
+  justify-content: center;
+  padding: 24px 37px;
+  margin: 0 auto;
+}
+.site-header .container-menu .menu {
+  max-width: 1084px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.site-header .container-menu .menu .container-social-networks {
+  display: flex;
+  column-gap: 11px;
 }
 
 .white-button {
