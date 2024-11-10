@@ -34,11 +34,13 @@ BlankSlate is distributed under the terms of the GNU GPL
 @use "scss_parts/layout/header";
 @use "scss_parts/layout/footer";
 @use "scss_parts/sections/hero";
+@use "scss_parts/sections/resume";
 @use "scss_parts/sections/blog";
+@use "scss_parts/sections/slider";
 
 // 4. Components
 @use "scss_parts/components/buttons";
-@use "scss_parts/components/dots";
 @use "scss_parts/components/cards";
+@use "scss_parts/components/dots";
 @use "scss_parts/components/search_carousel";
 @use "scss_parts/components/modals";

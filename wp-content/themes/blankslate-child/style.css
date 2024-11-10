@@ -28,16 +28,31 @@ BlankSlate is distributed under the terms of the GNU GPL
   --hover-purple: #380fa1;
 }
 
-html {
+html,
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
-}
-
-body {
-  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  font-family: var(--fontOutfit);
 }
 
 a {
   text-decoration: none;
+}
+
+.container {
+  display: flex;
+  max-width: 1084px;
+  justify-content: center;
+  padding: 24px 37px;
+  margin: 0 auto;
 }
 
 :root {
@@ -224,12 +239,12 @@ a {
 }
 .site-header .container-menu {
   display: flex;
+  max-width: 1084px;
   justify-content: center;
   padding: 24px 37px;
   margin: 0 auto;
 }
 .site-header .container-menu .menu {
-  max-width: 1084px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -240,6 +255,86 @@ a {
   column-gap: 11px;
 }
 
+.section-resume .container-resume {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 56px;
+  margin-bottom: 56px;
+}
+.section-resume .container-resume .container-title {
+  margin-bottom: 27px;
+}
+.section-resume .container-resume .container-title .pre-title-resume {
+  font-family: var(--fontOutfit);
+  font-weight: var(--fontRegular);
+  font-size: 15px;
+  line-height: 26px;
+  color: var(--purple);
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0 0 7px;
+}
+@media (min-width: 992px) {
+  .section-resume .container-resume .container-title .pre-title-resume {
+    font-size: 18px;
+    line-height: 19px;
+  }
+}
+.section-resume .container-resume .container-title .title-resume {
+  font-family: var(--fontOutfit);
+  font-weight: var(--fontSemiBold);
+  font-size: 24px;
+  line-height: 28px;
+  color: var(--deep-grey);
+  text-align: center;
+}
+.section-resume .container-resume .container-description-resume {
+  max-width: 898px;
+  margin-bottom: 35px;
+}
+.section-resume .container-resume .container-description-resume p {
+  font-family: var(--fontOutfit);
+  font-weight: var(--fontRegular);
+  font-size: 17px;
+  line-height: 26px;
+  color: var(--deep-grey);
+  text-align: center;
+}
+.section-resume .container-resume .container-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.section-slider {
+  background-color: var(--light-grey);
+}
+.section-slider .container-slider {
+  display: flex;
+  justify-content: center;
+  padding: 80px 0px 80px 37px;
+  margin: 0 auto;
+}
+@media (min-width: 1024px) {
+  .section-slider .container-slider {
+    padding: 80px 37px;
+  }
+}
+.section-slider .container-slider .slider {
+  display: block;
+  max-width: 1084px;
+  overflow: hidden;
+}
+.section-slider .container-slider .slider .swiper-container .swiper-wrapper {
+  display: flex;
+}
+.section-slider .container-slider .slider .swiper-container .swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+
 .white-button {
   max-width: fit-content;
   max-width: -moz-fit-content;
@@ -248,7 +343,7 @@ a {
   justify-content: center;
   align-items: center;
   padding: 9px 45px 12px;
-  border: 2px solid transparent;
+  border: 2px solid var(--white);
   border-radius: 21px;
   font-family: var(--fontOutfit);
   font-size: 17px/28px;
@@ -260,32 +355,8 @@ a {
 }
 .white-button:hover {
   background: var(--white);
-  color: var(--white);
   border: 2px solid var(--white);
-}
-
-.white-button:hover {
-  max-width: fit-content;
-  max-width: -moz-fit-content;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 9px 45px 12px;
-  border: 2px solid transparent;
-  border-radius: 21px;
-  font-family: var(--fontOutfit);
-  font-size: 17px/28px;
-  font-weight: var(--fontBold);
   color: var(--hover-purple);
-  text-decoration: none;
-  background: var(--white);
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-.white-button:hover:hover {
-  background: var(--white);
-  color: var(--hover-purple);
-  border: 2px solid var(--white);
 }
 
 .deep-purple-button {
@@ -296,7 +367,7 @@ a {
   justify-content: center;
   align-items: center;
   padding: 9px 45px 12px;
-  border: 2px solid transparent;
+  border: 2px solid var(--deep-purple);
   border-radius: 21px;
   font-family: var(--fontOutfit);
   font-size: 17px/28px;
@@ -308,11 +379,11 @@ a {
 }
 .deep-purple-button:hover {
   background: var(--deep-purple);
-  color: var(--deep-purple);
   border: 2px solid var(--deep-purple);
+  color: var(--white);
 }
 
-.deep-purple-button:hover {
+.hover-purple-button {
   max-width: fit-content;
   max-width: -moz-fit-content;
   width: 100%;
@@ -320,20 +391,60 @@ a {
   justify-content: center;
   align-items: center;
   padding: 9px 45px 12px;
-  border: 2px solid transparent;
+  border: 2px solid var(--hover-purple);
   border-radius: 21px;
   font-family: var(--fontOutfit);
   font-size: 17px/28px;
   font-weight: var(--fontBold);
-  color: var(--white);
+  color: var(--hover-purple);
   text-decoration: none;
-  background: var(--deep-purple);
+  background: transparent;
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
-.deep-purple-button:hover:hover {
-  background: var(--deep-purple);
-  color: var(--white);
-  border: 2px solid var(--deep-purple);
+.hover-purple-button:hover {
+  background: var(--hover-purple);
+  border: 2px solid var(--hover-purple);
+}
+
+.card {
+  width: 100%;
+  max-width: 340px;
+  background-color: var(--white);
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+.card .card-image {
+  height: 220px;
+  object-fit: cover;
+}
+.card .card-content {
+  padding: 20px;
+}
+.card .card-content .category {
+  font-size: 15px;
+  font-weight: var(--fontRegular);
+  line-height: 26px;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 7px;
+}
+.card .card-content .title {
+  font-size: 24px;
+  font-weight: var(--fontSemiBold);
+  line-height: 28px;
+  color: var(--deep-grey);
+  margin-bottom: 24px;
+}
+.card .card-content .description {
+  font-weight: var(--fontRegular);
+  font-size: 17px;
+  color: var(--deep-grey);
+  line-height: 26px;
 }
 
 .dot-group {

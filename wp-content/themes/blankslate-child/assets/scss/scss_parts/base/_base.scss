@@ -8,14 +8,29 @@
   --hover-purple: #380fa1;
 }
 
-html {
+html,
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
-}
-
-body {
-  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  font-family: var(--fontOutfit);
 }
 
 a {
   text-decoration: none;
+}
+
+.container {
+  display: flex;
+  max-width: 1084px;
+  justify-content: center;
+  padding: 24px 37px;
+  margin: 0 auto;
 }

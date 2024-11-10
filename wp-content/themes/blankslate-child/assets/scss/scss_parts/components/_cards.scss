@@ -1,0 +1,46 @@
+.card {
+  width: 100%;
+  max-width: 340px;
+  background-color: var(--white);
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .card-image {
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .card-content {
+    padding: 20px;
+
+    .category {
+      font-size: 15px;
+      font-weight: var(--fontRegular);
+      line-height: 26px;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 7px;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: var(--fontSemiBold);
+      line-height: 28px;
+      color: var(--deep-grey);
+      margin-bottom: 24px;
+    }
+
+    .description {
+      font-weight: var(--fontRegular);
+      font-size: 17px;
+      color: var(--deep-grey);
+      line-height: 26px;
+    }
+  }
+}

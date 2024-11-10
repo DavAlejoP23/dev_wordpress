@@ -1,0 +1,30 @@
+.section-slider {
+  background-color: var(--light-grey);
+
+  .container-slider {
+    display: flex;
+    justify-content: center;
+    padding: 80px 0px 80px 37px;
+    margin: 0 auto;
+
+    @media (min-width: 1024px) {
+      padding: 80px 37px;
+    }
+
+    .slider {
+      display: block;
+      max-width: 1084px;
+      overflow: hidden;
+
+      .swiper-container {
+        .swiper-wrapper {
+          display: flex;
+        }
+        .swiper-slide {
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}

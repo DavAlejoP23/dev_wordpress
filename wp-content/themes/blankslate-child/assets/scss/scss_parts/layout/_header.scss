@@ -3,11 +3,11 @@
   background: var(--deep-grey);
   .container-menu {
     display: flex;
+    max-width: 1084px;
     justify-content: center;
     padding: 24px 37px;
     margin: 0 auto;
     .menu {
-      max-width: 1084px;
       width: 100%;
       display: flex;
       align-items: center;
