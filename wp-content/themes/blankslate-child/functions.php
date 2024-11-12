@@ -329,8 +329,9 @@ require get_stylesheet_directory() . '/include/export-subscriptions.php';
 
 
 // Require files
-require get_stylesheet_directory() . '/acf/components/dp-acf-blocks.php';
 require get_stylesheet_directory() . '/theme/customize-header.php';
+require get_stylesheet_directory() . '/theme/customize-footer.php';
+require get_stylesheet_directory() . '/acf/components/dp-acf-blocks.php';
 require_once get_stylesheet_directory() . '/include/custom-wysiwyg.php';
 
 

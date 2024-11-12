@@ -1,9 +1,16 @@
 <?php
 function tooltyp_customizer_settings($wp_customize) {
-    // Configuración para el logo
+    // Crear el panel principal "Encabezado Personalizado Tooltyp"
+    $wp_customize->add_panel('tooltyp_header_panel', array(
+        'title' => __('Encabezado Personalizado Tooltyp', 'tooltyp'),
+        'priority' => 10, // Coloca este panel en la primera posición
+    ));
+
+    // Configuración para el logo dentro del panel principal
     $wp_customize->add_section('tooltyp_logo_section', array(
         'title'    => __('Logo', 'tooltyp'),
         'priority' => 30,
+        'panel'    => 'tooltyp_header_panel', // Asignar la sección al panel principal
     ));
 
     $wp_customize->add_setting('tooltyp_logo');
@@ -13,10 +20,11 @@ function tooltyp_customizer_settings($wp_customize) {
         'settings' => 'tooltyp_logo',
     )));
 
-    // Configuración para las redes sociales
+    // Configuración para las redes sociales dentro del panel principal
     $wp_customize->add_section('tooltyp_social_section', array(
         'title'    => __('Redes Sociales', 'tooltyp'),
         'priority' => 31,
+        'panel'    => 'tooltyp_header_panel', // Asignar la sección al panel principal
     ));
 
     $social_networks = array('facebook', 'twitter', 'instagram'); // Agrega o elimina redes según necesites
