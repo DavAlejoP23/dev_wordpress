@@ -12,11 +12,10 @@
     }
 
     .slider {
-      display: flex;
-      align-items: center;
+      display: block;
       max-width: 1084px;
-      height: 520px;
       overflow: hidden;
+
       .swiper-container {
         .swiper-wrapper {
           display: flex;

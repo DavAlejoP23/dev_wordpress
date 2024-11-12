@@ -389,10 +389,8 @@ a {
   }
 }
 .section-slider .container-slider .slider {
-  display: flex;
-  align-items: center;
+  display: block;
   max-width: 1084px;
-  height: 520px;
   overflow: hidden;
 }
 .section-slider .container-slider .slider .swiper-container .swiper-wrapper {
