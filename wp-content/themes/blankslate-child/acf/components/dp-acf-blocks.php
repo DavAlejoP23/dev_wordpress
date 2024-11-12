@@ -32,6 +32,16 @@ function dp_acf_blocks_init() {
         'keywords' => array('section', 'slider', 'tooltyp'),
     ));
 
+    acf_register_block_type(array(
+        'name' => 'newsletter',
+        'title' => __('Newsletter'),
+        'description' => __('A custom section for the newsletter'),
+        'render_template' => 'components/shared/newsletter.php',
+        'category' => 'formatting',
+        'icon' => 'admin-comments',
+        'keywords' => array('section', 'newsletter', 'tooltyp'),
+    ));
+
 }
 
 add_action('acf/init', 'dp_acf_blocks_init');

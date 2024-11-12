@@ -241,12 +241,92 @@ function dp_enqueue_scripts() {
     // Settings to Swiper
     wp_register_script('swiper-config', get_stylesheet_directory_uri() . '/assets/js/swiper-config.js', array('jquery', 'swiper-js'), filemtime(get_stylesheet_directory() . '/assets/js/swiper-config.js'), true);
     wp_enqueue_script('swiper-config');
+
+    // Validate Form JS
+    wp_register_script('validate-form', get_stylesheet_directory_uri() . '/assets/js/validate-form.js', array('jquery'), '1.0', true);
+    
+    // Take the URL of the REST API
+    wp_localize_script('validate-form', 'wpApiSettings', array(
+        'root' => esc_url(rest_url('custom/v1/subscribe'))
+    ));
+
+    wp_enqueue_script('validate-form'); // Enqueue después de localize_script
     
     // Custom JS
     wp_register_script('custom-js', get_stylesheet_directory_uri() . '/assets/js/custom.js', array('jquery'), '1.0', true);
     wp_enqueue_script('custom-js');
+
 }
 add_action('wp_enqueue_scripts', 'dp_enqueue_scripts');
+
+
+function create_subscriptions_table() {
+    global $wpdb;
+
+    // Table name with prefix
+    $table_name = $wpdb->prefix . 'dp_subscriptions_newsletter';
+
+    // Verify if the table already exist
+    if ($wpdb->get_var("SHOW TABLES LIKE '{$table_name}'") != $table_name) {
+        // Settings for the table
+        $charset_collate = $wpdb->get_charset_collate();
+
+        // Create the table SQL
+        $sql = "CREATE TABLE {$table_name} (
+            id INT(11) NOT NULL AUTO_INCREMENT,
+            email VARCHAR(255) NOT NULL UNIQUE,
+            uuid CHAR(36) NOT NULL UNIQUE,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            PRIMARY KEY (id)
+        ) {$charset_collate};";
+
+        // Include the function dbDelta for execute the search for create
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        dbDelta($sql);
+    }
+}
+
+// Execute when the theme is activated
+add_action('after_setup_theme', 'create_subscriptions_table');
+
+// Add custom endpoint for the newsletter form
+add_action('rest_api_init', function () {
+    register_rest_route('custom/v1', '/subscribe', array(
+        'methods' => 'POST',
+        'callback' => 'process_subscription',
+    ));
+});
+
+
+function process_subscription($request) {
+    global $wpdb;
+    
+    $email = sanitize_email($request->get_param('email'));
+    $uuid = uniqid('', true);
+    $table_name = $wpdb->prefix . 'dp_subscriptions_newsletter';
+
+    if (empty($email)) {
+        return new WP_REST_Response('Email vacío.', 400);
+    }
+
+    $result = $wpdb->insert($table_name, array(
+        'email' => $email,
+        'uuid' => $uuid,
+        'created_at' => current_time('mysql')
+    ));
+
+    if ($result) {
+        return new WP_REST_Response('Gracias por suscribirte!', 200);
+    } else {
+        error_log("Error en la inserción: " . $wpdb->last_error);
+        return new WP_REST_Response('Error al guardar la suscripción', 500);
+    }
+}
+
+// Export subscriptions CSV file
+
+require get_stylesheet_directory() . '/include/export-subscriptions.php';
+
 
 // Require files
 require get_stylesheet_directory() . '/acf/components/dp-acf-blocks.php';
