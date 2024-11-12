@@ -12,17 +12,14 @@
     }
 
     .slider {
-      display: block;
+      display: flex;
+      align-items: center;
       max-width: 1084px;
+      height: 520px;
       overflow: hidden;
-
       .swiper-container {
         .swiper-wrapper {
           display: flex;
-        }
-        .swiper-slide {
-          display: flex;
-          justify-content: center;
         }
       }
     }

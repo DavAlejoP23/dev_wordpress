@@ -18,51 +18,91 @@
     desktop: 32,
   };
 
-  function initSwiper() {
-    // Destruir cualquier instancia anterior de Swiper si existe
-    if (window.mySwiper) {
-      window.mySwiper.destroy(true, true);
+  // Inicializar el slider de Blog
+  function initSliderSwiper() {
+    const sliderSwiperContainer = document.querySelector(
+      ".swiper-container-slider"
+    );
+
+    if (sliderSwiperContainer) {
+      // Destruir cualquier instancia anterior de Swiper si existe
+      if (window.sliderSwiper) {
+        window.sliderSwiper.destroy(true, true);
+      }
+
+      // Configuración del slider de Blog
+      window.sliderSwiper = new Swiper(sliderSwiperContainer, {
+        direction: "horizontal",
+        loop: false,
+        slidesPerView: slidesPerViewConfig.mobile,
+        spaceBetween: spaceBetweenConfig.mobile,
+        pagination: {
+          el: ".swiper-pagination-slider",
+          clickable: true,
+        },
+        allowTouchMove: true,
+        breakpoints: {
+          [breakpoints.mobile]: {
+            slidesPerView: slidesPerViewConfig.mobile,
+            spaceBetween: spaceBetweenConfig.mobile,
+          },
+          [breakpoints.tablet]: {
+            slidesPerView: slidesPerViewConfig.tablet,
+            spaceBetween: spaceBetweenConfig.tablet,
+          },
+          [breakpoints.desktop]: {
+            slidesPerView: (function () {
+              const slideCount = $(sliderSwiperContainer).find(
+                ".swiper-slide"
+              ).length;
+              return slideCount <= 3 ? slideCount : slidesPerViewConfig.desktop;
+            })(),
+            spaceBetween: spaceBetweenConfig.desktop,
+            allowTouchMove: (function () {
+              const slideCount = $(sliderSwiperContainer).find(
+                ".swiper-slide"
+              ).length;
+              return slideCount > 3; // Desactiva swipe si hay 3 o menos
+            })(),
+          },
+        },
+      });
     }
-
-    // Seleccionar el contenedor principal de Swiper
-    const swiperContainer = document.querySelector(".swiper-container");
-
-    // Configuración de Swiper
-    window.mySwiper = new Swiper(swiperContainer, {
-      direction: "horizontal",
-      loop: false, // Sin bucle
-      slidesPerView: slidesPerViewConfig.mobile, // Valor inicial en móvil
-      spaceBetween: spaceBetweenConfig.mobile, // Espacio inicial en móvil
-      pagination: {
-        clickable: true,
-      },
-      allowTouchMove: true, // Desactivar swipe si hay 3 o menos en desktop
-      breakpoints: {
-        [breakpoints.mobile]: {
-          slidesPerView: slidesPerViewConfig.mobile,
-          spaceBetween: spaceBetweenConfig.mobile,
-        },
-        [breakpoints.tablet]: {
-          slidesPerView: slidesPerViewConfig.tablet,
-          spaceBetween: spaceBetweenConfig.tablet,
-        },
-        [breakpoints.desktop]: {
-          slidesPerView: (function () {
-            const slideCount = $(swiperContainer).find(".swiper-slide").length;
-            return slideCount <= 3 ? slideCount : slidesPerViewConfig.desktop;
-          })(),
-          spaceBetween: spaceBetweenConfig.desktop,
-          allowTouchMove: (function () {
-            const slideCount = $(swiperContainer).find(".swiper-slide").length;
-            return slideCount > 3; // Desactiva swipe si hay 3 o menos
-          })(),
-        },
-      },
-    });
   }
 
-  // Ejecutar la función en el load inicial y en cada resize
+  // Inicializar el slider de Hero
+  function initHeroSwiper() {
+    const heroSwiperContainer = document.querySelector(
+      ".swiper-container-hero"
+    );
+
+    if (heroSwiperContainer) {
+      // Destruir cualquier instancia anterior de Swiper si existe
+      if (window.heroSwiper) {
+        window.heroSwiper.destroy(true, true);
+      }
+
+      // Configuración del slider de Hero
+      window.heroSwiper = new Swiper(heroSwiperContainer, {
+        direction: "horizontal",
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 0,
+        pagination: {
+          el: ".swiper-pagination-hero",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    }
+  }
+
+  // Ejecutar ambas funciones al cargar y redimensionar la página
   $(window).on("load resize", function () {
-    initSwiper();
+    initSliderSwiper();
+    initHeroSwiper();
   });
 })(jQuery);

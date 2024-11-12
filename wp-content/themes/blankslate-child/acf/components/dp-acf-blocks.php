@@ -3,6 +3,16 @@
 function dp_acf_blocks_init() {
 
     acf_register_block_type(array(
+        'name' => 'section-hero',
+        'title' => __('Section Hero'),
+        'description' => __('A custom section for the hero'),
+        'render_template' => 'components/shared/hero.php',
+        'category' => 'formatting',
+        'icon' => 'admin-comments',
+        'keywords' => array('section', 'hero', 'tooltyp'),
+    ));
+
+    acf_register_block_type(array(
         'name' => 'section-resume',
         'title' => __('Section Resume'),
         'description' => __('A custom section for the resume'),
@@ -21,7 +31,7 @@ function dp_acf_blocks_init() {
         'icon' => 'admin-comments',
         'keywords' => array('section', 'slider', 'tooltyp'),
     ));
-    
+
 }
 
 add_action('acf/init', 'dp_acf_blocks_init');

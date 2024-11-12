@@ -1,8 +1,12 @@
 .card {
+  display: flex;
+  justify-content: flex-start;
   width: 100%;
   max-width: 340px;
+  height: 507px;
+  border: unset;
+  border-radius: unset;
   background-color: var(--white);
-  border-radius: 8px;
   overflow: hidden;
   text-align: center;
   transition: transform 0.3s ease;
@@ -29,11 +33,16 @@
     }
 
     .title {
+      display: -webkit-box;
+      overflow: hidden;
       font-size: 24px;
       font-weight: var(--fontSemiBold);
       line-height: 28px;
       color: var(--deep-grey);
       margin-bottom: 24px;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
 
     .description {
