@@ -1,4 +1,7 @@
 wp-config.php
 wp-content/uploads/
-.htaccess
+wp-content/plugins/
+wp-content/themes/blankslate-child/node_modules
 wp-content/themes/blankslate-child/dev_start.sh
+debug.log
+.htaccess

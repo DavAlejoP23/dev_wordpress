@@ -1,5 +1,6 @@
 <?php
 function tooltyp_customizer_settings($wp_customize) {
+
     // Crear el panel principal "Encabezado Personalizado Tooltyp"
     $wp_customize->add_panel('tooltyp_header_panel', array(
         'title' => __('Encabezado Personalizado Tooltyp', 'tooltyp'),
